@@ -1,5 +1,6 @@
 package src;
 import java.util.*;
+import java.sql.*;
 
 
  //------------------MAIN_ATM-FILE ---------------//
@@ -7,16 +8,28 @@ import java.util.*;
 public class Atm {
     public static void main(String[] args) {
 
+        try {
+        Connection con = DBConnection.getConnection();
+
+        System.out.println("Connected to MySql Successfully!");
+
+        con.close();
+      }
+      catch(SQLException e){
+        System.out.println("Connection Failed!");
+
+        e.printStackTrace();
+      }
+
+
+
         Scanner sc = new Scanner(System.in);
         Account a = new Account();
-
-
-        System.out.println("\n<==========ATM -- [ALL TIME MONEY - AND BANK SERVICE]==========>");
+        System.out.println("\n<==========ATM -- [ALL TIME MONEY - AND BANK SERVICES]==========>");
 
 
 
-        //-------------CHECKING-ID_PASS---------------//
-
+        //-------------Entering-ID_PASS---------------//
         while(true){
         System.out.print("Enter ID: ");
         int id = sc.nextInt();
@@ -24,26 +37,52 @@ public class Atm {
         System.out.print("\nEnter PASS: ");
         int password = sc.nextInt();
 
-        if(a.ID == id && a.PASS == password){
-            System.out.print("Checking ID-PASS..");
+        
+        try{
+        //------------Checking Id-pass-------------//
+        Connection con = DBConnection.getConnection();
 
+        String sql = "SELECT * FROM accounts WHERE id=? AND password=?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, id);
+        ps.setInt(2, password);
+
+        ResultSet rs = ps.executeQuery();
+
+        if(rs.next()){
+
+          a.ID = rs.getInt("id");
+          a.PASS = rs.getInt("password");
+          a.balance = rs.getInt("balance");
+
+
+            System.out.print("Checking ID-PASS..");
             try{
             for(int i=1; i<=5;i++){
                 Thread.sleep(500);
                 System.out.print(".");
             }
 
-            System.out.println("\n<===========LOGIN SUCCESSFUL============>\n");
             } catch(InterruptedException e){
                 e.printStackTrace();
-
-
-        }  break;
-
+        }  
+        
+        System.out.println("\n<===========LOGIN SUCCESSFUL============>\n");
+        break;
 
         }
+        else{
         System.out.println("~~~~~~~~WRONG LOGIN~~~~~~~~");
         }
+
+        }
+        catch(SQLException e){
+        e.printStackTrace();
+        }
+
+      }
 
 
     

@@ -5,9 +5,9 @@ import java.util.*;
 //---------------Account Methods for Atm------------------//
 
 public  class Account{
-    int ID = 12345;
-    int PASS = 12345;
-    double balance = 5000;
+    int ID;
+    int PASS;
+    double balance;
     
 
     //--------DEFAULT_BALANCE------//
@@ -96,3 +96,4 @@ public  class Account{
 
 
 }
+
