@@ -1,5 +1,6 @@
 package src;
 import java.util.*;
+import java.sql.*;
 
 
 //---------------Account Methods for Atm------------------//
@@ -75,6 +76,32 @@ public  class Account{
 
     System.out.println("CURRENT ACCOUNT BALANCE: ₹"+ ammount);
     System.out.println("\n");
+
+
+    try{
+        Connection con = DBConnection.getConnection();
+
+        String sql = "INSERT INTO accounts(id, password, balance) VALUES (?, ? ,?)";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, Id);
+        ps.setInt(2, password);
+        ps.setDouble(3, ammount);
+
+        int rows = ps.executeUpdate();
+
+        if(rows > 0){
+            System.out.println("ACCOUNT Created Successfully");
+        }
+
+        ps.close();
+        con.close();
+    }
+
+    catch(SQLException e) {
+        e.printStackTrace();
+    }
 }
 
 
