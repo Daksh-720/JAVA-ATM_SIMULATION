@@ -88,7 +88,6 @@ public class Atm {
     
        
         //-------------ATM-CLASS-CALL--------------//
-
         while(true){
         //menu
         System.out.println("1.) View Account Balance");
