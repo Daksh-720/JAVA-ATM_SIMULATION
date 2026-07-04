@@ -22,7 +22,7 @@ public class Atm {
       }
 
 
-
+        //-----Scanner methods-----//
         Scanner sc = new Scanner(System.in);
         Account a = new Account();
         System.out.println("\n<==========ATM -- [ALL TIME MONEY - AND BANK SERVICES]==========>");
@@ -30,13 +30,21 @@ public class Atm {
 
 
         //-------------Entering-ID_PASS---------------//
+        login:
         while(true){
+        System.out.println("1. Login");
+        System.out.println("2. Create Account");
+
+        System.out.print("Enter Choice: ");
+        int choice = sc.nextInt();
+
+
+        switch (choice) {
+        case 1:
         System.out.print("Enter ID: ");
         int id = sc.nextInt();
-
         System.out.print("\nEnter PASS: ");
         int password = sc.nextInt();
-
         
         try{
         //------------Checking Id-pass-------------//
@@ -68,20 +76,31 @@ public class Atm {
             } catch(InterruptedException e){
                 e.printStackTrace();
         }  
-        
         System.out.println("\n<===========LOGIN SUCCESSFUL============>\n");
-        break;
-
+        break login;
         }
+        
         else{
         System.out.println("~~~~~~~~WRONG LOGIN~~~~~~~~");
         }
-
         }
         catch(SQLException e){
         e.printStackTrace();
         }
+        break;
 
+        case 2:
+        a.CreateAcc(sc);
+        break;
+
+        case 3:
+        System.out.println("<========Thankyou For using Our ATM=======>");
+        sc.close();
+        return;
+
+        default:
+          System.out.println("Invalid Choice! Please enter 1, 2 or 3");
+      }
       }
 
 

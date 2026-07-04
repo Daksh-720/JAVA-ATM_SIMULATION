@@ -77,12 +77,9 @@ public  class Account{
     System.out.println("CURRENT ACCOUNT BALANCE: ₹"+ ammount);
     System.out.println("\n");
 
-
     try{
         Connection con = DBConnection.getConnection();
-
         String sql = "INSERT INTO accounts(id, password, balance) VALUES (?, ? ,?)";
-
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setInt(1, Id);
@@ -92,7 +89,7 @@ public  class Account{
         int rows = ps.executeUpdate();
 
         if(rows > 0){
-            System.out.println("ACCOUNT Created Successfully");
+            System.out.println("<===========ACCOUNT Created Successfully============>");
         }
 
         ps.close();
