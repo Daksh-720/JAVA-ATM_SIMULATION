@@ -102,6 +102,51 @@ public  class Account{
 }
 
 
+
+
+    //<=========Deleting Account=========>//
+    void DeleteAcc(Scanner sc) {
+        System.out.println("<=========Let's Delete Account :( =========>\n");
+
+        System.out.print("Enter Id: ");
+        int id = sc.nextInt();
+        System.out.print("Enter Password: ");
+        int password = sc.nextInt();
+        
+        try {
+            Connection con = DBConnection.getConnection();
+
+            String sql="DELETE FROM accounts WHERE id=? AND password=?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            ps.setInt(2, password);
+
+            int rows=ps.executeUpdate();
+
+            if(rows > 0) {
+                System.out.println("\nAccount Deleted Successfully :|");
+            }
+            else{
+                System.out.println("\nIncorrect Id or Password....");
+            }
+
+            ps.close();
+            con.close();
+            
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
+
+
+
+
+
+
    //<=========LOADING - UI==========>//
     void LOADING(){
     try{

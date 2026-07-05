@@ -79,7 +79,7 @@ public class Atm {
         System.out.println("\n<===========LOGIN SUCCESSFUL============>\n");
         break login;
         }
-        
+
         else{
         System.out.println("~~~~~~~~WRONG LOGIN~~~~~~~~");
         }
@@ -112,7 +112,7 @@ public class Atm {
         System.out.println("1.) View Account Balance");
         System.out.println("2.) Deposit Money");
         System.out.println("3.) Withdraw Money");
-        System.out.println("4.) Create Account");
+        System.out.println("4.) Delete Account");
         System.out.println("5.) Exit ATM");   
         
         //choose nums        
@@ -132,7 +132,7 @@ public class Atm {
                     a.LOADING();
                     break;
              
-            case 4: a.CreateAcc(sc);
+            case 4: a.DeleteAcc(sc);
                     a.LOADING();
                     break;
 
@@ -146,8 +146,13 @@ public class Atm {
             default: System.out.println("INVALID OPTION");
         }
 
-        
       }
+
+
         
     }
-}
+  }
+
+
+
+   
