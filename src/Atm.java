@@ -25,7 +25,9 @@ public class Atm {
         //-----Scanner methods-----//
         Scanner sc = new Scanner(System.in);
         Account a = new Account();
-        System.out.println("\n<==========ATM -- [ALL TIME MONEY - AND BANK SERVICES]==========>");
+        System.out.println("╔══════════════════════════╗");
+        System.out.println("║       JAVA - ATM         ║");
+        System.out.println("╚══════════════════════════╝");
 
 
 
